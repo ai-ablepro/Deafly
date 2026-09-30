@@ -3,493 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ablepro Solutions Network</title>
+    <title>Ablepro Connections</title>
     <style>
-        /* =========================================
-           1. THEME SETTINGS (Edit your colors here)
-           ========================================= */
+        /* --- MODERN DESIGN SYSTEM --- */
         :root {
-            --primary-color: #2563eb;       /* Main Brand Color (Blue) */
-            --primary-hover: #1d4ed8;       /* Darker Blue for hover states */
-            --secondary-color: #f3f4f6;     /* Light Gray for backgrounds/tabs */
-            --text-main: #1f2937;           /* Dark Text */
-            --text-light: #6b7280;          /* Gray Text */
-            --bg-color: #e5e7eb;            /* Page Background */
-            --card-bg: #ffffff;             /* Card Background */
-            --danger-color: #ef4444;        /* Red for reject/skip actions */
-            --success-color: #10b981;       /* Green for accept/like actions */
-            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --border-radius: 8px;
+            --brand-color: #6366f1; /* Modern Indigo */
+            --brand-hover: #4f46e5;
+            --accent-color: #ec4899; /* Friendly Pink */
+            --bg-base: #f8fafc;
+            --surface: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --input-bg: #f1f5f9;
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 12px;
+            --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.08);
+            --font-main: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
-        /* =========================================
-           2. CORE LAYOUT & RESETS
-           ========================================= */
-        body {
-            font-family: var(--font-family);
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        * { box-sizing: inherit; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         .hidden { display: none !important; }
 
-        /* Buttons */
-        .btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            margin-top: 10px;
-            transition: background 0.2s;
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-base);
+            /* Friendly modern dot pattern */
+            background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+            color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
         }
-        .btn:hover { background-color: var(--primary-hover); }
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--text-light);
-            color: var(--text-main);
-        }
-        .btn-success { background-color: var(--success-color); }
-        .btn-danger { background-color: var(--danger-color); }
 
-        /* Forms */
-        .input-group { margin-bottom: 15px; text-align: left; }
-        .input-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; }
-        .input-group input, .input-group select, .input-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-family: var(--font-family);
-        }
-        .input-group input[disabled] { background-color: #f9fafb; color: #9ca3af; cursor: not-allowed; }
-
-        /* =========================================
-           3. AUTHENTICATION PAGES
-           ========================================= */
-        .auth-container {
-            max-width: 450px;
-            margin: 5vh auto;
-            background: var(--card-bg);
-            padding: 40px 30px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .auth-container h1 { margin-bottom: 5px; color: var(--primary-color); }
-        .auth-tagline { font-size: 14px; color: var(--text-light); margin-bottom: 30px; line-height: 1.5; }
+        /* --- TYPOGRAPHY & BUTTONS --- */
+        h1, h2, h3 { letter-spacing: -0.03em; font-weight: 800; }
         
-        /* Modals */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 1000;
-            padding: 20px;
+        .btn-primary, .btn-secondary {
+            display: inline-flex; justify-content: center; align-items: center;
+            width: 100%; padding: 16px 24px;
+            border-radius: 99px; /* Pill shape */
+            font-size: 16px; font-weight: 700;
+            cursor: pointer; transition: all 0.2s ease; border: none;
         }
-        .modal-content {
-            background: var(--card-bg);
-            padding: 30px;
-            max-width: 500px;
-            width: 100%;
-            border-radius: var(--border-radius);
-            max-height: 90vh;
-            overflow-y: auto;
+        .btn-primary { background: var(--brand-color); color: white; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3); }
+        .btn-primary:active { transform: scale(0.98); }
+        
+        .btn-secondary { background: var(--surface); color: var(--text-dark); border: 2px solid #e2e8f0; }
+        .btn-secondary:hover { border-color: var(--brand-color); }
+
+        /* --- INPUTS --- */
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .form-control {
+            width: 100%; padding: 16px; border-radius: var(--radius-sm);
+            border: 2px solid transparent; background: var(--input-bg);
+            font-size: 15px; color: var(--text-dark); font-family: var(--font-main);
+            transition: border 0.2s;
         }
-        .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+        .form-control:focus { outline: none; border-color: var(--brand-color); background: var(--surface); }
+        .form-control:disabled { opacity: 0.6; cursor: not-allowed; }
 
-        /* =========================================
-           4. MAIN APP DASHBOARD
-           ========================================= */
-        .navbar {
-            background: var(--primary-color);
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .nav-brand { font-size: 1.2rem; font-weight: bold; }
-        .nav-links span { margin-left: 20px; cursor: pointer; font-size: 14px; }
-        .nav-links span:hover { text-decoration: underline; }
+        /* --- LAYOUT CONTAINERS --- */
+        .app-wrapper { max-width: 480px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; position: relative; }
+        .card { background: var(--surface); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-soft); margin: 20px; text-align: center; }
+        
+        /* --- BRANDING HEADER --- */
+        .brand-header { padding: 40px 20px 20px; text-align: center; }
+        .brand-logo { width: 64px; height: 64px; background: linear-gradient(135deg, var(--brand-color), var(--accent-color)); border-radius: 20px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; font-weight: 900; }
 
-        .main-container {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 20px;
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
+        /* --- DISCOVER & APP VIEWS --- */
+        .top-nav { background: var(--surface); padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.03); border-bottom-left-radius: var(--radius-lg); border-bottom-right-radius: var(--radius-lg); }
+        .top-nav h2 { font-size: 20px; margin: 0; }
+        
+        .mode-toggle { display: flex; background: var(--input-bg); border-radius: 99px; padding: 4px; margin: 20px; }
+        .mode-btn { flex: 1; text-align: center; padding: 12px; border-radius: 99px; font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.2s; color: var(--text-muted); }
+        .mode-btn.active { background: var(--surface); color: var(--brand-color); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
 
-        /* Sidebar */
-        .sidebar { background: var(--card-bg); padding: 20px; border-radius: var(--border-radius); height: fit-content; }
-        .profile-pic { width: 100%; border-radius: var(--border-radius); object-fit: cover; aspect-ratio: 1/1; background: #eee; margin-bottom: 10px; }
-        .sidebar-menu { margin-top: 20px; list-style: none; padding: 0; }
-        .sidebar-menu li { padding: 12px 10px; border-bottom: 1px solid #eee; cursor: pointer; font-size: 15px; }
-        .sidebar-menu li:hover { background: var(--secondary-color); font-weight: bold; }
+        /* Grid for Friends */
+        .friend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0 20px 100px; }
+        .friend-card { background: var(--surface); border-radius: var(--radius-md); padding: 16px; text-align: center; box-shadow: var(--shadow-soft); cursor: pointer; }
+        .friend-card img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 12px; border: 3px solid var(--input-bg); }
+        .friend-card h3 { font-size: 16px; margin-bottom: 4px; }
+        .friend-card p { font-size: 12px; color: var(--text-muted); }
 
-        /* Content Area & Tabs */
-        .content-area { background: var(--card-bg); padding: 30px; border-radius: var(--border-radius); min-height: 70vh; }
-        .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 15px; align-items: center; }
-        .tab { padding: 8px 16px; cursor: pointer; border-radius: 20px; background: var(--secondary-color); font-weight: bold; font-size: 14px; }
-        .tab.active { background: var(--primary-color); color: white; }
-        .filter-select { margin-left: auto; padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
+        /* Single Card for Dates */
+        .date-container { padding: 0 20px 100px; }
+        .date-card { background: var(--surface); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-soft); position: relative; }
+        .date-card img { width: 100%; height: 400px; object-fit: cover; }
+        .date-info { padding: 24px; }
+        .date-info h2 { font-size: 28px; margin-bottom: 8px; }
+        .tag { display: inline-block; padding: 6px 12px; background: var(--input-bg); border-radius: 99px; font-size: 12px; font-weight: 700; color: var(--brand-color); margin: 0 4px 12px 0; }
+        .date-actions { display: flex; gap: 16px; padding: 0 24px 24px; }
 
-        /* =========================================
-           5. DISCOVER MODES
-           ========================================= */
-        /* Friend Mode (Grid) */
-        .grid-view { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
-        .profile-card { border: 1px solid #eee; padding: 20px; border-radius: var(--border-radius); text-align: center; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
-        .profile-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.05); }
-        .profile-card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; }
-        .profile-card h4 { margin: 0 0 5px 0; font-size: 18px; }
-        .profile-card p { font-size: 13px; color: var(--text-light); margin: 0 0 15px 0; }
+        /* Bottom Tab Bar */
+        .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface); padding: 16px 20px 30px; display: flex; justify-content: space-around; box-shadow: 0 -10px 40px rgba(0,0,0,0.05); z-index: 100; border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg); max-width: 480px; margin: 0 auto; }
+        .tab-item { text-align: center; color: var(--text-muted); cursor: pointer; font-size: 12px; font-weight: 700; }
+        .tab-item.active { color: var(--brand-color); }
+        .tab-icon { font-size: 24px; margin-bottom: 4px; display: block; }
 
-        /* Date Mode (Single Card) */
-        .single-view { max-width: 450px; margin: 0 auto; text-align: center; border: 1px solid #eee; padding: 0; border-radius: var(--border-radius); overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .single-view img { width: 100%; height: 400px; object-fit: cover; }
-        .single-info { padding: 20px; }
-        .single-info h2 { margin: 0 0 5px 0; }
-        .single-info p { margin: 5px 0; font-size: 15px; color: var(--text-light); }
-        .action-buttons { display: flex; gap: 10px; margin-top: 20px; }
-
-        /* Expanded Profile Profile (Friend Mode Overlay) */
-        .expanded-header { display: flex; gap: 20px; align-items: center; margin-bottom: 20px; }
-        .expanded-header img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; }
-
-        /* =========================================
-           6. RESPONSIVE MEDIA QUERIES
-           ========================================= */
-        @media (max-width: 768px) {
-            .main-container { grid-template-columns: 1fr; padding: 10px; margin: 0; }
-            .sidebar { display: none; } /* Hide sidebar on mobile */
-            .content-area { padding: 15px; }
-            .filter-select { margin-left: 0; width: 100%; margin-top: 10px; }
-            .auth-container { margin: 0; border-radius: 0; min-height: 100vh; }
+        @media (min-width: 481px) {
+            body { background-color: #e2e8f0; }
+            .app-wrapper { background: var(--bg-base); box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+            .bottom-bar { position: sticky; bottom: 0; }
         }
     </style>
 </head>
 <body>
 
+<div class="app-wrapper">
+
     <!-- =========================================
-         STATE 1: LOGIN PAGE
+         LANDING PAGE (Login / Signup Selection)
          ========================================= -->
-    <div id="loginView" class="auth-container">
-        <h1>Ablepro Network</h1>
-        <p class="auth-tagline">Built with love by Ablepro Solutions.<br>A social impact startup for people with disabilities.<br>Enable, Engage, Empower.</p>
-        
-        <div class="input-group">
-            <label>Email ID</label>
-            <input type="email" id="loginEmail" placeholder="Enter your registered email">
+    <div id="viewLanding">
+        <div class="brand-header">
+            <div class="brand-logo">A</div>
+            <h1 style="font-size: 32px; color: var(--brand-color); margin-bottom: 8px;">Ablepro</h1>
+            <p style="color: var(--text-muted); line-height: 1.5; font-size: 15px;">A secure, inclusive community space for Deaf and Hard of Hearing individuals to connect, chat, and date.</p>
         </div>
         
-        <button class="btn" onclick="processLogin()">Login</button>
-        <p style="font-size: 13px; margin-top: 20px;">Don't have an account? <span style="color: var(--primary-color); cursor: pointer; font-weight: bold;" onclick="navigate('signupView')">Sign up here</span></p>
-    </div>
-
-    <!-- =========================================
-         STATE 2: SIGN UP PAGE (11 Fields)
-         ========================================= -->
-    <div id="signupView" class="auth-container hidden" style="max-width: 600px;">
-        <h2 style="color: var(--primary-color); margin-top: 0;">Join the Community</h2>
-        <form onsubmit="submitSignup(event)">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <div class="input-group"><label>1. Full Name</label><input type="text" required></div>
-                <div class="input-group"><label>2. Date of Birth</label><input type="date" required></div>
-                <div class="input-group"><label>3. Gender</label>
-                    <select required><option>Male</option><option>Female</option><option>Non-Binary</option><option>Other</option></select>
-                </div>
-                <div class="input-group"><label>4. City</label><input type="text" required></div>
-                <div class="input-group"><label>5. Diet</label>
-                    <select required><option>Vegetarian</option><option>Non-Vegetarian</option><option>Vegan</option><option>Eggetarian</option></select>
-                </div>
-                <div class="input-group"><label>6. Religion</label><input type="text" placeholder="All accepted" required></div>
-                <div class="input-group" style="grid-column: span 2;"><label>7. Relationship Goals</label>
-                    <select required><option>Friend Finder</option><option>Date Finder</option><option>Both</option></select>
-                </div>
-                <div class="input-group" style="grid-column: span 2;"><label>8. About Me / Bio</label>
-                    <textarea rows="3" required placeholder="Tell the community about your interests..."></textarea>
-                </div>
-                <div class="input-group" style="grid-column: span 2;"><label>9. Profile Photo URL</label><input type="url" placeholder="https://..." required></div>
-                <div class="input-group"><label>10. Phone Number</label><input type="tel" required></div>
-                <div class="input-group"><label>11. Email ID</label><input type="email" required></div>
-            </div>
-            <button type="submit" class="btn">Submit Details</button>
-            <p style="font-size: 13px; margin-top: 20px; cursor: pointer;" onclick="navigate('loginView')">Back to Login</p>
-        </form>
-    </div>
-
-    <!-- =========================================
-         STATE 3: PENDING VERIFICATION
-         ========================================= -->
-    <div id="pendingView" class="auth-container hidden">
-        <h2 style="color: var(--success-color);">Application Received</h2>
-        <p style="font-size: 16px; line-height: 1.6;">Kindly wait till we verify your credentials.</p>
-        <p style="font-size: 13px; color: var(--text-light); margin-top: 20px;">You will be whitelisted once your profile is verified.</p>
-        <button class="btn btn-outline" style="margin-top: 30px;" onclick="navigate('loginView')">Return to Login</button>
-    </div>
-
-    <!-- =========================================
-         STATE 4: DISCLAIMER MODAL
-         ========================================= -->
-    <div id="disclaimerModal" class="modal-overlay hidden">
-        <div class="modal-content">
-            <h2 style="margin-top: 0;">Community Guidelines</h2>
-            <div style="font-size: 14px; color: var(--text-light); line-height: 1.6;">
-                <p>Welcome! This invite-only group is for Deaf and Hard of Hearing people looking to connect, whether for friendship, dating, or community. All communication styles (ISL, lipreading, text, voice, etc.) are welcome here.</p>
-                <p>We encourage local meetups ask the admin if you'd like help/support organizing one! Events should be inclusive, accessible, and fun. This was created by your fellow DHH friend, to help make connections more accessible, safe and fun!</p>
-                <strong>Platform rules:</strong>
-                <ol style="padding-left: 20px;">
-                    <li>Be kind and respectful no bullying or hate.</li>
-                    <li>All communication styles like ISL, texts, lipreading or speaking are valid. Be respectful of others' communication style.</li>
-                    <li>Ask before messaging someone privately.</li>
-                    <li>No pressure consent is key.</li>
-                    <li>Keep it supportive and safe. Be respectful of others' sexuality/gender, caste, etc.</li>
-                    <li>No spam or promotions. Message an admin for any clarification.</li>
-                    <li>Respect everyone's privacy. This means NO GOSSIP!</li>
-                    <li>Events should be safe & inclusive.</li>
-                    <li>Stay on topic (dating, friendships, D/HoH life)</li>
-                    <li>We do not bear any responsibilities or consequences post your connections through this platform.</li>
-                </ol>
-                <p>We are glad you are here!</p>
-            </div>
-            <div class="modal-actions">
-                <button class="btn btn-outline" onclick="location.reload()">Reject</button>
-                <button class="btn" onclick="acceptDisclaimer()">Accept</button>
-            </div>
+        <div class="card">
+            <h2 style="margin-bottom: 24px; font-size: 22px;">Welcome to the Neighborhood</h2>
+            <!-- Prominent buttons giving equal weight to Login and Sign Up -->
+            <button class="btn-primary" onclick="showView('viewLogin')" style="margin-bottom: 16px;">Log In to Account</button>
+            <button class="btn-secondary" onclick="showView('viewSignup')">Create New Profile</button>
         </div>
     </div>
 
     <!-- =========================================
-         STATE 5: EXPANDED PROFILE MODAL (Friend Mode)
+         LOGIN PAGE
          ========================================= -->
-    <div id="profileModal" class="modal-overlay hidden">
-        <div class="modal-content">
-            <div class="expanded-header">
-                <img id="modalImg" src="" alt="Profile">
-                <div>
-                    <h2 id="modalName" style="margin: 0 0 5px 0;">Name, Age</h2>
-                    <p id="modalLocation" style="margin: 0; color: var(--text-light);">City</p>
-                </div>
+    <div id="viewLogin" class="hidden">
+        <div class="card" style="margin-top: 40px;">
+            <h2 style="margin-bottom: 8px;">Welcome Back</h2>
+            <p style="color: var(--text-muted); margin-bottom: 32px;">Enter your whitelisted email to continue.</p>
+            
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" class="form-control" placeholder="you@example.com">
             </div>
-            <div style="background: var(--secondary-color); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <p><strong>Diet:</strong> <span id="modalDiet">Vegetarian</span></p>
-                <p><strong>Religion:</strong> <span id="modalReligion">Hindu</span></p>
-                <p><strong>Bio:</strong> <span id="modalBio">Bio goes here.</span></p>
-            </div>
-            <div class="modal-actions">
-                <button class="btn btn-outline" onclick="closeProfileModal()">Go Back</button>
-                <button class="btn btn-success" onclick="sendAction('Connection Request Sent')">Send Connection</button>
-            </div>
+            
+            <button class="btn-primary" onclick="showView('viewDiscover')" style="margin-top: 16px;">Access Community</button>
+            <p style="margin-top: 24px; color: var(--text-muted); cursor: pointer; font-size: 14px; font-weight: 700;" onclick="showView('viewLanding')">← Back to Home</p>
         </div>
     </div>
 
     <!-- =========================================
-         STATE 6: MAIN APPLICATION WORKSPACE
+         SIGN UP PAGE
          ========================================= -->
-    <div id="mainAppView" class="hidden">
+    <div id="viewSignup" class="hidden" style="padding-bottom: 40px;">
+        <div class="brand-header" style="padding-bottom: 0;">
+            <h2>Create Profile</h2>
+            <p style="color: var(--text-muted);">Join the Ablepro network.</p>
+        </div>
         
-        <!-- Navbar -->
-        <div class="navbar">
-            <div class="nav-brand">Ablepro Network</div>
-            <div class="nav-links">
-                <span class="mobile-menu-item" onclick="switchMainTab('discoverTab')">Discover</span>
-                <span class="mobile-menu-item" onclick="switchMainTab('editProfileTab')">Edit Profile</span>
-                <span onclick="location.reload()">Logout</span>
+        <div class="card" style="text-align: left;">
+            <div class="form-group"><label>1. Full Name</label><input type="text" class="form-control" placeholder="Jane Doe"></div>
+            <div class="form-group"><label>2. Date of Birth</label><input type="date" class="form-control"></div>
+            <div class="form-group"><label>3. Gender</label>
+                <select class="form-control"><option>Female</option><option>Male</option><option>Non-Binary</option><option>Other</option></select>
+            </div>
+            <div class="form-group"><label>4. City</label><input type="text" class="form-control" placeholder="Bengaluru"></div>
+            <div class="form-group"><label>5. Diet</label>
+                <select class="form-control"><option>Vegetarian</option><option>Non-Vegetarian</option><option>Vegan</option></select>
+            </div>
+            <div class="form-group"><label>6. Religion</label><input type="text" class="form-control" placeholder="All welcome"></div>
+            <div class="form-group"><label>7. Looking For</label>
+                <select class="form-control"><option>Friendship</option><option>Dating</option><option>Both</option></select>
+            </div>
+            <div class="form-group"><label>8. About Me</label>
+                <textarea class="form-control" rows="3" placeholder="I love exploring the city..."></textarea>
+            </div>
+            <div class="form-group"><label>9. Photo URL</label><input type="url" class="form-control" placeholder="https://..."></div>
+            <div class="form-group"><label>10. Phone Number</label><input type="tel" class="form-control" placeholder="+91"></div>
+            <div class="form-group"><label>11. Email ID</label><input type="email" class="form-control" placeholder="jane@example.com"></div>
+            
+            <button class="btn-primary" onclick="alert('Profile submitted for verification!'); showView('viewLanding')" style="margin-top: 16px;">Submit for Verification</button>
+            <p style="margin-top: 24px; text-align: center; color: var(--text-muted); cursor: pointer; font-size: 14px; font-weight: 700;" onclick="showView('viewLanding')">← Cancel</p>
+        </div>
+    </div>
+
+    <!-- =========================================
+         DISCOVER PAGE (Main App)
+         ========================================= -->
+    <div id="viewDiscover" class="hidden">
+        <div class="top-nav">
+            <h2>Discover</h2>
+            <span style="font-size: 24px; cursor: pointer;" onclick="showView('viewLanding')">🚪</span>
+        </div>
+
+        <!-- Mode Toggle -->
+        <div class="mode-toggle">
+            <div id="tabFriend" class="mode-btn active" onclick="switchDiscoverMode('friend')">Friend Finder</div>
+            <div id="tabDate" class="mode-btn" onclick="switchDiscoverMode('date')">Date Finder</div>
+        </div>
+
+        <!-- Friend Grid -->
+        <div id="feedFriend" class="friend-grid">
+            <div class="friend-card" onclick="alert('Viewing Priya\'s full profile')">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" alt="Priya">
+                <h3>Priya, 28</h3>
+                <p>📍 Bengaluru</p>
+            </div>
+            <div class="friend-card" onclick="alert('Viewing Aditya\'s full profile')">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200" alt="Aditya">
+                <h3>Aditya, 30</h3>
+                <p>📍 Bengaluru</p>
+            </div>
+            <div class="friend-card" onclick="alert('Viewing Sneha\'s full profile')">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200" alt="Sneha">
+                <h3>Sneha, 29</h3>
+                <p>📍 Bengaluru</p>
+            </div>
+            <div class="friend-card" onclick="alert('Viewing Raj\'s full profile')">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" alt="Raj">
+                <h3>Raj, 31</h3>
+                <p>📍 Bengaluru</p>
             </div>
         </div>
 
-        <div class="main-container">
-            
-            <!-- Left Sidebar (Desktop Only) -->
-            <div class="sidebar">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300" class="profile-pic" alt="My Profile">
-                <h2 style="margin: 10px 0 5px 0;">Raj, 31</h2>
-                <p style="font-size: 14px; color: var(--text-light); margin: 0 0 15px 0;">Bengaluru, India</p>
-                <ul class="sidebar-menu">
-                    <li onclick="switchMainTab('discoverTab')">🔍 Discover</li>
-                    <li onclick="alert('Matches page coming soon!')">🤝 My Connections</li>
-                    <li onclick="switchMainTab('editProfileTab')">⚙️ Account Settings</li>
-                </ul>
+        <!-- Date Single Card -->
+        <div id="feedDate" class="date-container hidden">
+            <div class="date-card">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500" alt="Ananya">
+                <div class="date-info">
+                    <h2>Ananya, 27</h2>
+                    <span class="tag">Bengaluru</span> <span class="tag">Vegetarian</span>
+                    <p style="color: var(--text-muted); line-height: 1.6; margin-top: 12px;">Digital marketer and avid traveler. Love discovering hidden street food spots, reading poetry, and retro playlists.</p>
+                </div>
+                <div class="date-actions">
+                    <button class="btn-secondary" onclick="alert('Skipped')">✕ Skip</button>
+                    <button class="btn-primary" onclick="alert('Interest Sent!')">♥ Connect</button>
+                </div>
             </div>
+        </div>
 
-            <!-- Right Content Area -->
-            <div class="content-area">
-                
-                <!-- SUB-VIEW: DISCOVER -->
-                <div id="discoverTab">
-                    <div class="tabs">
-                        <div id="btnFriendMode" class="tab active" onclick="setDiscoverMode('friend')">Friend Finder</div>
-                        <div id="btnDateMode" class="tab" onclick="setDiscoverMode('date')">Date Finder</div>
-                        <select class="filter-select">
-                            <option>📍 Filter: Bengaluru</option>
-                            <option>📍 Filter: All India</option>
-                        </select>
-                    </div>
-
-                    <!-- Friend Finder (Grid) -->
-                    <div id="friendGrid" class="grid-view">
-                        <!-- Profile Card 1 -->
-                        <div class="profile-card" onclick="openProfileModal('Priya, 28', 'Bengaluru', 'Software engineer. Love cycling in Cubbon Park.', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200')">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" alt="Priya">
-                            <h4>Priya, 28</h4>
-                            <p>Bengaluru</p>
-                            <button class="btn btn-outline" style="padding: 8px; font-size: 12px;">View Profile</button>
-                        </div>
-                        <!-- Profile Card 2 -->
-                        <div class="profile-card" onclick="openProfileModal('Aditya, 30', 'Bengaluru', 'Architect and coffee lover.', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200')">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200" alt="Aditya">
-                            <h4>Aditya, 30</h4>
-                            <p>Bengaluru</p>
-                            <button class="btn btn-outline" style="padding: 8px; font-size: 12px;">View Profile</button>
-                        </div>
-                         <!-- Profile Card 3 -->
-                         <div class="profile-card" onclick="openProfileModal('Sneha, 29', 'Bengaluru', 'Teacher and amateur baker.', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200')">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200" alt="Sneha">
-                            <h4>Sneha, 29</h4>
-                            <p>Bengaluru</p>
-                            <button class="btn btn-outline" style="padding: 8px; font-size: 12px;">View Profile</button>
-                        </div>
-                    </div>
-
-                    <!-- Date Finder (Single Card) -->
-                    <div id="dateCard" class="single-view hidden">
-                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500" alt="Date Profile">
-                        <div class="single-info">
-                            <h2>Ananya, 27</h2>
-                            <p>📍 Bengaluru • Vegetarian</p>
-                            <p style="margin-top: 15px; line-height: 1.5; font-size: 14px;">Digital marketer and avid traveler. Love discovering hidden street food spots, reading poetry, and listening to retro playlists. Looking for someone genuine.</p>
-                            <div class="action-buttons">
-                                <button class="btn btn-danger" onclick="sendAction('Skipped')">Skip</button>
-                                <button class="btn btn-success" onclick="sendAction('Interest Sent!')">Send Interest</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SUB-VIEW: EDIT PROFILE -->
-                <div id="editProfileTab" class="hidden">
-                    <h2 style="margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 10px;">Edit Profile</h2>
-                    <p style="font-size: 13px; color: var(--danger-color); font-weight: bold; margin-bottom: 25px;">Note: Name, Email, and Phone Number are securely locked.</p>
-                    
-                    <div style="max-width: 600px;">
-                        <!-- Locked Fields -->
-                        <div class="input-group"><label>Name</label><input type="text" value="Raj" disabled></div>
-                        <div class="input-group"><label>Email ID</label><input type="email" value="raj@example.com" disabled></div>
-                        <div class="input-group"><label>Phone Number</label><input type="tel" value="+91 98765 10000" disabled></div>
-                        
-                        <!-- Editable Fields -->
-                        <div class="input-group" style="margin-top: 30px;"><label>City</label><input type="text" value="Bengaluru"></div>
-                        <div class="input-group"><label>Diet</label>
-                            <select><option selected>Vegetarian</option><option>Non-Vegetarian</option><option>Vegan</option></select>
-                        </div>
-                        <div class="input-group"><label>Relationship Goals</label>
-                            <select><option selected>Both (Date & Friend)</option><option>Friend Finder</option><option>Date Finder</option></select>
-                        </div>
-                        <div class="input-group"><label>About Me Bio</label>
-                            <textarea rows="5">Car enthusiast, cinephile, interested in Indian arts and culture. Passionate about exploring local heritage, weekend drives, and quiet coffee walks.</textarea>
-                        </div>
-                        <button class="btn" style="width: auto; padding: 12px 30px;" onclick="alert('Profile Saved Successfully!')">Save Changes</button>
-                    </div>
-                </div>
-
+        <!-- Global App Bottom Navigation -->
+        <div class="bottom-bar">
+            <div class="tab-item active" onclick="showView('viewDiscover')">
+                <span class="tab-icon">🔍</span>
+                Discover
+            </div>
+            <div class="tab-item" onclick="showView('viewEditProfile')">
+                <span class="tab-icon">👤</span>
+                Profile
             </div>
         </div>
     </div>
 
     <!-- =========================================
-         7. FRONTEND JAVASCRIPT LOGIC
+         EDIT PROFILE PAGE
          ========================================= -->
-    <script>
-        // --- Navigation ---
-        function navigate(viewId) {
-            // Hide all root views
-            document.getElementById('loginView').classList.add('hidden');
-            document.getElementById('signupView').classList.add('hidden');
-            document.getElementById('pendingView').classList.add('hidden');
-            document.getElementById('mainAppView').classList.add('hidden');
-            document.getElementById('disclaimerModal').classList.add('hidden');
+    <div id="viewEditProfile" class="hidden">
+        <div class="top-nav">
+            <h2>My Profile</h2>
+            <span style="font-size: 24px; cursor: pointer;" onclick="showView('viewLanding')">🚪</span>
+        </div>
+        
+        <div class="card" style="text-align: left; margin-bottom: 100px;">
+            <div style="text-align: center; margin-bottom: 24px;">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 4px solid var(--input-bg);">
+                <h3 style="margin-top: 12px;">Raj</h3>
+            </div>
+
+            <p style="font-size: 12px; color: var(--accent-color); font-weight: 700; margin-bottom: 20px; text-transform: uppercase;">🔒 Locked Fields (Contact Support)</p>
+            <div class="form-group"><label>Name</label><input type="text" class="form-control" value="Raj" disabled></div>
+            <div class="form-group"><label>Email ID</label><input type="email" class="form-control" value="raj@example.com" disabled></div>
+            <div class="form-group"><label>Phone Number</label><input type="tel" class="form-control" value="+91 98765 10000" disabled></div>
             
-            // Show target
-            document.getElementById(viewId).classList.remove('hidden');
-            window.scrollTo(0,0);
-        }
-
-        // --- Authentication Flow ---
-        function processLogin() {
-            const email = document.getElementById('loginEmail').value;
-            if(!email) { alert("Please enter your email"); return; }
-            // If verified, show disclaimer before entering app
-            document.getElementById('loginView').classList.add('hidden');
-            document.getElementById('disclaimerModal').classList.remove('hidden');
-        }
-
-        function submitSignup(e) {
-            e.preventDefault(); // Stop page refresh
-            navigate('pendingView');
-        }
-
-        function acceptDisclaimer() {
-            document.getElementById('disclaimerModal').classList.add('hidden');
-            navigate('mainAppView');
-        }
-
-        // --- Main App Workspace Navigation ---
-        function switchMainTab(tabId) {
-            document.getElementById('discoverTab').classList.add('hidden');
-            document.getElementById('editProfileTab').classList.add('hidden');
-            document.getElementById(tabId).classList.remove('hidden');
-            window.scrollTo(0,0);
-        }
-
-        // --- Discover Mode Toggle ---
-        function setDiscoverMode(mode) {
-            // Reset tabs
-            document.getElementById('btnFriendMode').classList.remove('active');
-            document.getElementById('btnDateMode').classList.remove('active');
+            <hr style="border: none; border-top: 2px solid var(--input-bg); margin: 32px 0;">
             
-            // Reset views
-            document.getElementById('friendGrid').classList.add('hidden');
-            document.getElementById('dateCard').classList.add('hidden');
+            <p style="font-size: 12px; color: var(--brand-color); font-weight: 700; margin-bottom: 20px; text-transform: uppercase;">✏️ Editable Fields</p>
+            <div class="form-group"><label>City</label><input type="text" class="form-control" value="Bengaluru"></div>
+            <div class="form-group"><label>About Me</label>
+                <textarea class="form-control" rows="4">Car enthusiast, cinephile, interested in Indian arts and culture.</textarea>
+            </div>
             
-            // Activate selection
-            if(mode === 'friend') {
-                document.getElementById('btnFriendMode').classList.add('active');
-                document.getElementById('friendGrid').classList.remove('hidden');
-            } else {
-                document.getElementById('btnDateMode').classList.add('active');
-                document.getElementById('dateCard').classList.remove('hidden');
-            }
-        }
+            <button class="btn-primary" onclick="alert('Profile Updated Successfully!')" style="margin-top: 16px;">Save Changes</button>
+        </div>
 
-        // --- Interactions ---
-        function openProfileModal(name, location, bio, imgUrl) {
-            document.getElementById('modalName').innerText = name;
-            document.getElementById('modalLocation').innerText = location;
-            document.getElementById('modalBio').innerText = bio;
-            document.getElementById('modalImg').src = imgUrl;
-            document.getElementById('profileModal').classList.remove('hidden');
-        }
+        <!-- Global App Bottom Navigation -->
+        <div class="bottom-bar">
+            <div class="tab-item" onclick="showView('viewDiscover')">
+                <span class="tab-icon">🔍</span>
+                Discover
+            </div>
+            <div class="tab-item active" onclick="showView('viewEditProfile')">
+                <span class="tab-icon">👤</span>
+                Profile
+            </div>
+        </div>
+    </div>
 
-        function closeProfileModal() {
-            document.getElementById('profileModal').classList.add('hidden');
-        }
+</div>
 
-        function sendAction(message) {
-            alert(message);
-            closeProfileModal();
+<!-- --- NAVIGATION LOGIC --- -->
+<script>
+    function showView(viewId) {
+        // Hide all major screens
+        document.getElementById('viewLanding').classList.add('hidden');
+        document.getElementById('viewLogin').classList.add('hidden');
+        document.getElementById('viewSignup').classList.add('hidden');
+        document.getElementById('viewDiscover').classList.add('hidden');
+        document.getElementById('viewEditProfile').classList.add('hidden');
+        
+        // Show selected screen
+        document.getElementById(viewId).classList.remove('hidden');
+        window.scrollTo(0,0);
+    }
+
+    function switchDiscoverMode(mode) {
+        // Reset Toggle UI
+        document.getElementById('tabFriend').classList.remove('active');
+        document.getElementById('tabDate').classList.remove('active');
+        
+        // Reset Feeds
+        document.getElementById('feedFriend').classList.add('hidden');
+        document.getElementById('feedDate').classList.add('hidden');
+        
+        // Apply Active State
+        if(mode === 'friend') {
+            document.getElementById('tabFriend').classList.add('active');
+            document.getElementById('feedFriend').classList.remove('hidden');
+        } else {
+            document.getElementById('tabDate').classList.add('active');
+            document.getElementById('feedDate').classList.remove('hidden');
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>
